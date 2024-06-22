@@ -1,0 +1,31 @@
+{
+  "name": "ab-slide-ease",
+  "version": "1.0.0",
+  "description": "A seamless and easy to use React slider library for smooth, flexible web interfaces.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Abhijeetkokat007/ab-slide-ease.git"
+  },
+  "keywords": [
+    "npm",
+    "react",
+    "library"
+  ],
+  "author": "Abhijeet B Kokat",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Abhijeetkokat007/ab-slide-ease/issues"
+  },
+  "homepage": "https://github.com/Abhijeetkokat007/ab-slide-ease#readme",
+  "dependencies": {
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
