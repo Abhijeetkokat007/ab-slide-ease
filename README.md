@@ -25,16 +25,15 @@ To use Ab Slide Ease in your React project, follow the steps below:
 First, import the AbSlideElse component and the accompanying CSS file.
 
 ```bash
-import React from 'react';
-import AbSlideElse from 'ab-slide-ease';
+import showSlider from 'ab-slide-ease';
 ```
 **2. Provide Slide Data**
 Prepare an array of slide data, each containing an image URL and a caption.
 ```bash
-const slides = [
-  { image: 'path/to/image1.jpg', caption: 'Caption 1' },
-  { image: 'path/to/image2.jpg', caption: 'Caption 2' },
-  { image: 'path/to/image3.jpg', caption: 'Caption 3' },
+const images = [
+  'path/to/image1.jpg', 
+  'path/to/image2.jpg', 
+  'path/to/image3.jpg', 
 ];
 
 ```
@@ -44,8 +43,7 @@ Use the AbSlideElse component in your JSX and pass the slide data and optional i
 const App = () => {
   return (
     <div>
-      <h1>Welcome to Ab Slide Ease Demo</h1>
-      <AbSlideElse slides={slides} interval={3000} />
+      <button onClick={() => showSlider(images, 2000)}>Show Slider </button>
     </div>
   );
 };
@@ -57,26 +55,23 @@ Here's a complete example:
 
 ```bash
 import React from 'react';
-import ReactDOM from 'react-dom';
-import AbSlideElse from 'ab-slide-ease';
-import 'ab-slide-ease/dist/AbSlideElse.css';
+import showSlider from 'ab-slide-ease';
 
-const slides = [
-  { image: 'path/to/image1.jpg', caption: 'Caption 1' },
-  { image: 'path/to/image2.jpg', caption: 'Caption 2' },
-  { image: 'path/to/image3.jpg', caption: 'Caption 3' },
+const images = [
+  'path/to/image1.jpg', 
+  'path/to/image2.jpg', 
+  'path/to/image3.jpg', 
 ];
 
 const App = () => {
   return (
-    <div>
-      <h1>Welcome to Ab Slide Ease Demo</h1>
-      <AbSlideElse slides={slides} interval={3000} />
+     <div>
+      <button onClick={() => showSlider(images, 2000)}>Show Slider </button>
     </div>
   );
 };
 
-ReactDOM.render(<App />, document.getElementById('root'));
+export default App;
 ```
 ## License
 This project is licensed under the Apache-2.0 License. See the [LICENSE](https://github.com/Abhijeetkokat007/ab-slide-ease/blob/main/LICENSE) file for details.

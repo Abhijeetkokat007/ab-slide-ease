@@ -1,0 +1,38 @@
+
+.auto-slider {
+  position: relative;
+  width: 98%;
+  height: 97vh;
+  margin: auto;
+  padding: 5px;
+  overflow: hidden;
+}
+
+.slide img {
+  width: 100%;
+  display: block;
+  height: 97vh;
+ 
+  border-radius: 10px;
+}
+
+.prev-button, .next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px 13px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.prev-button {
+  left: 10px;
+}
+
+.next-button {
+  right: 10px;
+} 
+
