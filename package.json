@@ -1,6 +1,6 @@
 {
   "name": "ab-slide-ease",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A seamless and easy to use React slider library for smooth, flexible web interfaces.",
   "main": "dist/auto-slider.js",
   "scripts": {
