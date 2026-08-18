@@ -6,6 +6,9 @@
 
 **Ab Slide Ease** is a modern, high-performance, and feature-rich React slider library built for smooth transitions, flexible layouts, and elegant user interfaces. Works seamlessly in pure React apps, Next.js (SSR), and mobile browsers.
 
+- 🎮 **[View Live Interactive Web Demo](https://abhijeetkokat007.github.io/ab-slide-ease/test-demo.html)**
+- 📁 **[View test-demo.html Source Code on GitHub](https://github.com/Abhijeetkokat007/ab-slide-ease/blob/main/test-demo.html)**
+
 ---
 
 ## ✨ Highlights & Features
