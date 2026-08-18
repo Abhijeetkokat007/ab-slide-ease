@@ -5,12 +5,12 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'auto-slider.js',
+    library: 'AbSlideEase',
     libraryTarget: 'umd',
+    globalObject: 'this',
+    clean: true,
   },
   devtool: "source-map",
-  optimization: {
-    minimize: false,
-  },
   module: {
     rules: [
       {
@@ -27,9 +27,9 @@ module.exports = {
     ],
   },
   externals: {
-    react: 'react', 
-    'prop-type': 'prop-type',
-    'react-dom': 'react-dom',
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    'prop-types': 'PropTypes',
   },
   resolve: {
     extensions: ['.js', '.jsx'],

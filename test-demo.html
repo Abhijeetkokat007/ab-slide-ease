@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ab Slide Ease - Live Interactive Test Demo</title>
+  
+  <!-- React & ReactDOM CDN -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/prop-types@15.8.1/prop-types.js" crossorigin></script>
+
+  <!-- Ab Slide Ease Bundled Package -->
+  <script src="./dist/auto-slider.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      min-height: 100vh;
+    }
+    .header {
+      text-align: center;
+      padding: 40px 20px 20px 20px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .header p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      margin-top: 8px;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .section-card {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 40px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .section-card h2 {
+      margin-top: 0;
+      color: #38bdf8;
+      font-size: 1.4rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+    .demo-controls {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 10px 20px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .btn:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+    }
+    .btn-secondary {
+      background: #475569;
+    }
+    .btn-secondary:hover {
+      background: #334155;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>🚀 Ab Slide Ease - Local Test Environment</h1>
+    <p>Test all features, animations, swipe, progress bars, and modal controls locally before NPM publishing.</p>
+  </div>
+
+  <div class="container">
+    
+    <!-- Test Case 1: React Component with Slide Effect & Progress Bar -->
+    <div class="section-card">
+      <h2>1. React Component Demo (<span class="badge">Effect: Slide + Captions + Progress Bar</span>)</h2>
+      <p style="color: #cbd5e1;">Feature Check: Smooth slide animation, Pause on hover, Top progress bar, Badge counter, Touch swipe.</p>
+      <div id="react-slider-root-1"></div>
+    </div>
+
+    <!-- Test Case 2: React Component with Fade Effect -->
+    <div class="section-card">
+      <h2>2. React Component Demo (<span class="badge">Effect: Fade</span>)</h2>
+      <p style="color: #cbd5e1;">Feature Check: Smooth opacity cross-fade transition.</p>
+      <div id="react-slider-root-2"></div>
+    </div>
+
+    <!-- Test Case 3: Imperative Modal Trigger -->
+    <div class="section-card">
+      <h2>3. Imperative Modal Trigger (<span class="badge">showSlider Helper</span>)</h2>
+      <p style="color: #cbd5e1;">Click button to trigger full-screen glassmorphic overlay slider.</p>
+      <div class="demo-controls">
+        <button class="btn" id="open-modal-btn">✨ Open Fullscreen Modal Slider</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Access library from global window UMD
+    const AutoSlider = window.AbSlideEase.AutoSlider || window.AbSlideEase.default;
+    const showSlider = window.AbSlideEase.showSlider;
+
+    const sampleSlides = [
+      {
+        url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=1200&q=80',
+        title: '🏔️ Majestic Mountain Range',
+        description: 'Breathtaking landscape with crystal clear lake reflections.',
+        link: 'https://unsplash.com'
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?w=1200&q=80',
+        title: '🌲 Deep Evergreen Forest',
+        description: 'Serene pine woods with morning mist and sunrays.',
+      },
+      {
+        url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=1200&q=80',
+        title: '🌅 Sunset Horizon',
+        description: 'Vibrant colors during dusk over rolling mountain hills.'
+      }
+    ];
+
+    const simpleImageUrls = [
+      'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=1200&q=80',
+      'https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=1200&q=80'
+    ];
+
+    // Render Test Case 1
+    const root1 = ReactDOM.createRoot(document.getElementById('react-slider-root-1'));
+    root1.render(
+      React.createElement(AutoSlider, {
+        images: sampleSlides,
+        duration: 3500,
+        height: '420px',
+        effect: 'slide',
+        showDots: true,
+        showArrows: true,
+        showCounter: true,
+        showProgressBar: true,
+        pauseOnHover: true
+      })
+    );
+
+    // Render Test Case 2
+    const root2 = ReactDOM.createRoot(document.getElementById('react-slider-root-2'));
+    root2.render(
+      React.createElement(AutoSlider, {
+        images: simpleImageUrls,
+        duration: 2500,
+        height: '380px',
+        effect: 'fade',
+        showDots: true,
+        showArrows: true,
+        pauseOnHover: true
+      })
+    );
+
+    // Setup Modal Trigger Button
+    document.getElementById('open-modal-btn').addEventListener('click', () => {
+      showSlider(sampleSlides, 3000);
+    });
+  </script>
+
+</body>
+</html>

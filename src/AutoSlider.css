@@ -1,38 +1,293 @@
+/* Modern Glassmorphism & High Performance CSS for ab-slide-ease */
+
+:root {
+  --ase-primary-color: #ffffff;
+  --ase-accent-color: #3b82f6;
+  --ase-bg-glass: rgba(15, 23, 42, 0.45);
+  --ase-border-glass: rgba(255, 255, 255, 0.18);
+  --ase-btn-hover-bg: rgba(255, 255, 255, 0.25);
+  --ase-radius: 16px;
+  --ase-transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
 
 .auto-slider {
   position: relative;
-  width: 98%;
-  height: 97vh;
-  margin: auto;
-  padding: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: var(--ase-radius);
+  background-color: #0f172a;
+  user-select: none;
+  -webkit-user-select: none;
+  outline: none;
+  touch-action: pan-y;
+}
+
+.auto-slider:focus-visible {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.6);
+}
+
+.auto-slider-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e293b;
+  color: #94a3b8;
+  border-radius: var(--ase-radius);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1rem;
+}
+
+/* Progress Bar */
+.slider-progress-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  z-index: 10;
+}
+
+.slider-progress-bar {
+  height: 100%;
+  background: var(--ase-accent-color);
+  width: 0%;
+  animation: sliderProgress linear forwards;
+}
+
+@keyframes sliderProgress {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* Counter Badge */
+.slider-counter-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--ase-bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ase-primary-color);
+  border: 1px solid var(--ase-border-glass);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  font-family: system-ui, -apple-system, sans-serif;
+  z-index: 8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Slide Track */
+.slider-track {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.slide-item {
+  flex-shrink: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
   overflow: hidden;
 }
 
-.slide img {
+.slide-image {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  height: 97vh;
- 
-  border-radius: 10px;
+  pointer-events: none;
 }
 
-.prev-button, .next-button {
+/* Fade Effect Mode */
+.auto-slider-effect-fade .slider-track {
+  transform: none !important;
+  position: relative;
+}
+
+.auto-slider-effect-fade .slide-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease-in-out, visibility 0.6s ease-in-out;
+  will-change: opacity;
+}
+
+.auto-slider-effect-fade .slide-item.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+/* Slide Overlay & Captions */
+.slide-caption-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 24px 24px 24px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.3) 60%, transparent 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 5;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.slide-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #ffffff;
+}
+
+.slide-description {
+  margin: 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  line-height: 1.4;
+  max-width: 600px;
+}
+
+.slide-link-btn {
+  display: inline-block;
+  align-self: flex-start;
+  margin-top: 6px;
+  padding: 8px 18px;
+  background: var(--ase-accent-color);
+  color: #ffffff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: var(--ase-transition);
+}
+
+.slide-link-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* Navigation Buttons */
+.slider-btn {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 10px 13px;
-  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  background: var(--ase-bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--ase-primary-color);
+  border: 1px solid var(--ase-border-glass);
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 8;
+  transition: var(--ase-transition);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  padding: 0;
+}
+
+.slider-btn:hover {
+  background: var(--ase-btn-hover-bg);
+  transform: translateY(-50%) scale(1.12);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.slider-btn:active {
+  transform: translateY(-50%) scale(0.96);
 }
 
 .prev-button {
-  left: 10px;
+  left: 16px;
 }
 
 .next-button {
-  right: 10px;
-} 
+  right: 16px;
+}
 
+/* Pagination Dots */
+.slider-dots-container {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ase-bg-glass);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 8px 14px;
+  border-radius: 30px;
+  border: 1px solid var(--ase-border-glass);
+  z-index: 8;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.45);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--ase-transition);
+}
+
+.slider-dot:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.slider-dot.active {
+  width: 22px;
+  border-radius: 12px;
+  background: var(--ase-accent-color);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .slider-btn {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .prev-button {
+    left: 8px;
+  }
+
+  .next-button {
+    right: 8px;
+  }
+
+  .slide-caption-overlay {
+    padding: 24px 16px 16px 16px;
+  }
+
+  .slide-title {
+    font-size: 1.2rem;
+  }
+
+  .slide-description {
+    font-size: 0.85rem;
+  }
+}
